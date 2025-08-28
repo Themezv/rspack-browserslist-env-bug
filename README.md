@@ -10,9 +10,7 @@ Rspack uses `browserslist-rs` which supports environment variables like `BROWSER
 
 1. **`browserslist-rs` supports environment variables**: The underlying `browserslist-rs` library correctly reads and processes environment variables like `BROWSERSLIST`.
 
-2. **Configuration check fails**: However, the `loadBrowserslist` function returns `false` for `!browsers` because the `browserslist-load-config` library used by Rspack doesn't understand environment variables.
-
-3. **Fallback check also fails**: The condition `!inlineQuery && !hasBrowserslistConfig(context)` also returns `false` because `hasBrowserslistConfig` doesn't recognize environment variables as valid configuration.
+2. **Configuration check fails**: The condition `!browsers || !inlineQuery && !hasBrowserslistConfig(context)` also returns `false` because `hasBrowserslistConfig` doesn't recognize environment variables as valid configuration.
 
 ### Error Message
 
